@@ -17,6 +17,12 @@ const fetchEmployees = async () => {
   }
 };
 
+const fetchPayslip = async function (id) {
+  const url = `https://zahin420.pythonanywhere.com/api/v1/payslip/${id}`;
+  const response = await fetch(url);
+  return await response.json();
+};
+
 // Send calculation request
 const sendCalculationRequest = async (data) => {
   const url = `https://zahin420.pythonanywhere.com/api/v1/payslip/list/`;
@@ -32,7 +38,7 @@ const sendCalculationRequest = async (data) => {
     const response = await fetch(url, options);
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const responseData = await response.json();
-    console.log("Response Data:", responseData);
+    console.log(responseData);
   } catch (error) {
     console.error("Error sending calculation request:", error);
   }
@@ -58,7 +64,7 @@ const createEmployeeRow = (id, first_name, last_name) => `
     <td>
       <div class="action-buttons">
         <a href="#" class="btn btn-calculate" data-employee-id="${id}">Calculate</a>
-        <a href="payslip.html" class="btn btn-payslip" data-employee-id="${id}">Payslip</a>
+        <a href="#" class="btn btn-payslip" data-employee-id="${id}">Payslip</a>
       </div>
     </td>
   </tr>
@@ -66,24 +72,27 @@ const createEmployeeRow = (id, first_name, last_name) => `
 
 // Handle clicks on employee row actions
 const handleEmployeeRowClick = (event) => {
-  if (!event.target.matches(".btn-calculate")) return;
+  if (event.target.matches(".btn-calculate")) {
+    const id = event.target.dataset.employeeId;
+    const modal = document.getElementById("modal");
+    const closeBtn = document.getElementById("closeBtn");
+    const holidayForm = document.getElementById("holidayForm");
 
-  const id = event.target.dataset.employeeId;
-  const modal = document.getElementById("modal");
-  const closeBtn = document.getElementById("closeBtn");
-  const holidayForm = document.getElementById("holidayForm");
+    modal.style.display = "block";
 
-  modal.style.display = "block";
+    closeBtn.onclick = () => (modal.style.display = "none");
 
-  closeBtn.onclick = () => (modal.style.display = "none");
-
-  holidayForm.onsubmit = (event) => {
-    event.preventDefault();
-    const holidaySelections = getHolidaySelections();
-    holidayForm.reset();
-    modal.style.display = "none";
-    handleCalculateClick(id, holidaySelections);
-  };
+    holidayForm.onsubmit = (event) => {
+      event.preventDefault();
+      const holidaySelections = getHolidaySelections();
+      holidayForm.reset();
+      modal.style.display = "none";
+      handleCalculateClick(id, holidaySelections);
+    };
+  } else if (event.target.matches(".btn-payslip")) {
+    const id = event.target.dataset.employeeId;
+    window.location.href = "payslip.html";
+  }
 };
 
 // Get holiday selections from the form
@@ -105,7 +114,6 @@ const getHolidaySelections = () => {
 // Handle calculation button clicks
 const handleCalculateClick = (id, selections) => {
   const data = { employee_id: +id, ...selections };
-  console.log(data);
   sendCalculationRequest(data);
 };
 

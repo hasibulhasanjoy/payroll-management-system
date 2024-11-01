@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="js/script.js"></script>
+    <title>Payroll | Payroll Management System</title>
+  </head>
+  <body>
+    <header>
+      <h1>Payroll Management System</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Faculty</a></li>
+        <li><a href="#" class="active">Payroll</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="payroll">
+        <div class="payroll-summary">
+          <table id="payroll-summary-table">
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="container--employee_row">
+              <!-- <tr>
+                <td>Ena</td>
+                <td>CSE</td>
+                <td>
+                  <div class="action-buttons">
+                    <a href="#" class="btn btn-calculate">Calculate</a>
+                    <a href="payslip.html" class="btn btn-payslip">Payslip</a>
+                  </div>
+                </td>
+              </tr> -->
+              <!-- Add more employees as needed -->
+            </tbody>
+          </table>
+          <!-- Modal Structure -->
+          <div class="modal" id="modal">
+            <div class="modal-content">
+              <span class="close" id="closeBtn">&times;</span>
+              <h2>Select Holidays</h2>
+              <form id="holidayForm">
+                <label>
+                  <input type="checkbox" name="holiday" value="Eid" />
+                  Eid </label
+                ><br />
+                <label>
+                  <input type="checkbox" name="holiday" value="New_Year" /> New
+                  Year </label
+                ><br />
+                <label>
+                  <input type="checkbox" name="holiday" value="Christmas" />
+                  Christmas </label
+                ><br />
+                <label>
+                  <input type="checkbox" name="holiday" value="Puja" />
+                  Puja </label
+                ><br />
+                <button type="submit" class="btn">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

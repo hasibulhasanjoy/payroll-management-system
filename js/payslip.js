@@ -32,11 +32,13 @@ const renderPayslipData = function (
   deductions,
   main_payscale
 ) {
-  document.getElementById("employee-name").innerHTML = `Name: ${name}`;
-  document.getElementById(
-    "employee-department"
-  ).innerHTML = `Department: ${department}`;
-  document.getElementById("date").innerHTML = `Date: ${date}`;
+  const employeeName = document.getElementById("employee-name");
+  const employeeDepartment = document.getElementById("employee-department");
+  const calculationDate = document.getElementById("date");
+
+  employeeName.innerHTML = `Name: ${name}`;
+  employeeDepartment.innerHTML = `Department: ${department}`;
+  calculationDate.innerHTML = `Date: ${date}`;
 };
 
 getPayslip();

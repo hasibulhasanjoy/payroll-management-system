@@ -4,6 +4,7 @@
 const API_BASE_URL = "https://zahin420.pythonanywhere.com/api/v1";
 const EMPLOYEES_URL = `${API_BASE_URL}/cse/employees/list/`;
 const CALCULATE_URL = `https://zahin420.pythonanywhere.com/api/v1/payslip/list/`;
+const payslips = [];
 
 // Fetch employees from the API
 const fetchEmployees = async () => {
@@ -38,7 +39,8 @@ const sendCalculationRequest = async (data) => {
     const response = await fetch(url, options);
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const responseData = await response.json();
-    console.log(responseData);
+    // console.log(responseData);
+    return responseData;
   } catch (error) {
     console.error("Error sending calculation request:", error);
   }
@@ -91,7 +93,7 @@ const handleEmployeeRowClick = (event) => {
     };
   } else if (event.target.matches(".btn-payslip")) {
     const id = event.target.dataset.employeeId;
-    window.location.href = "payslip.html";
+    window.location.href = `payslip.html?id=${id}`;
   }
 };
 
@@ -112,9 +114,12 @@ const getHolidaySelections = () => {
 };
 
 // Handle calculation button clicks
-const handleCalculateClick = (id, selections) => {
+const handleCalculateClick = async (id, selections) => {
   const data = { employee_id: +id, ...selections };
-  sendCalculationRequest(data);
+  const payslip = await sendCalculationRequest(data);
+  console.log(payslip);
+  payslips.push(payslip);
+  localStorage.setItem("payslips", JSON.stringify(payslips));
 };
 
 // Main function to initialize the application

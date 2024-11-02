@@ -4,7 +4,6 @@
 const API_BASE_URL = "https://zahin420.pythonanywhere.com/api/v1";
 const EMPLOYEES_URL = `${API_BASE_URL}/cse/employees/list/`;
 const CALCULATE_URL = `https://zahin420.pythonanywhere.com/api/v1/payslip/list/`;
-const payslips = [];
 
 // Fetch employees from the API
 const fetchEmployees = async () => {
@@ -45,10 +44,10 @@ const sendCalculationRequest = async (data) => {
     console.error("Error sending calculation request:", error);
   }
 };
-
 // Display employees in the table
 const renderEmployeeTable = (employees) => {
   const tableBody = document.querySelector(".container--employee_row");
+  console.log(tableBody);
   tableBody.innerHTML = employees
     .map(({ id, first_name, last_name }) =>
       createEmployeeRow(id, first_name, last_name)
@@ -118,8 +117,6 @@ const handleCalculateClick = async (id, selections) => {
   const data = { employee_id: +id, ...selections };
   const payslip = await sendCalculationRequest(data);
   console.log(payslip);
-  payslips.push(payslip);
-  localStorage.setItem("payslips", JSON.stringify(payslips));
 };
 
 // Main function to initialize the application

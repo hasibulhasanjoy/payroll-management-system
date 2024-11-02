@@ -9,7 +9,7 @@ const fetchPayslip = async function () {
 
 const getPayslip = async function () {
   const payslip = await fetchPayslip();
-  console.log(payslip[0]);
+  console.log(payslip[payslip.length - 1]);
   const {
     date,
     details: { name, department, compensations, deductions, main_payscale },

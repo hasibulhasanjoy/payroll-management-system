@@ -47,7 +47,6 @@ const sendCalculationRequest = async (data) => {
 // Display employees in the table
 const renderEmployeeTable = (employees) => {
   const tableBody = document.querySelector(".container--employee_row");
-  console.log(tableBody);
   tableBody.innerHTML = employees
     .map(({ id, first_name, last_name }) =>
       createEmployeeRow(id, first_name, last_name)

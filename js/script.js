@@ -97,23 +97,34 @@ const handleEmployeeRowClick = (event) => {
 
 // Get holiday selections from the form
 const getHolidaySelections = () => {
-  const holidays = ["Eid", "Christmas", "NewYear", "DurgaPuja"];
-  return holidays.reduce((acc, holiday) => {
-    const checkbox = document.querySelector(
-      `input[name="holiday"][value="${holiday}"]`
-    );
-    acc[`is${holiday}`] = checkbox
-      ? checkbox.checked
-        ? "true" // This sets the value as "true" or "false" as strings
-        : "false"
-      : "false";
-    return acc;
-  }, {}); // Ensure that the structure returns a valid object
+  const data = {
+    isEid: "false",
+    isDurgaPuja: "false",
+    isChristmas: "false",
+    isNewYear: "false",
+  };
+  const holidayCheckboxes = document.querySelectorAll('input[name="holiday"]');
+  holidayCheckboxes.forEach((checkbox) => {
+    if (checkbox.value === "Eid" && checkbox.checked) {
+      data.isEid = "true";
+    }
+    if (checkbox.value === "DurgaPuja" && checkbox.checked) {
+      data.isDurgaPuja = "true";
+    }
+    if (checkbox.value === "Christmas" && checkbox.checked) {
+      data.isChristmas = "true";
+    }
+    if (checkbox.value === "New_Year" && checkbox.checked) {
+      data.isNewYear = "true";
+    }
+  });
+  return data;
 };
 
 // Handle calculation button clicks
 const handleCalculateClick = async (id, selections) => {
   const data = { employee_id: +id, ...selections };
+  // console.log(data);
   const payslip = await sendCalculationRequest(data);
   console.log(payslip);
 };

@@ -23,45 +23,54 @@ h1 {
 }
 
 /* Table styling */
+/* Main Table Container */
+.table-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Table Styles */
 table {
-  width: 80%;
-  max-width: 800px;
+  width: 45%; /* Increased width for more space */
+  max-width: 700px;
   border-collapse: collapse;
-  margin: 20px auto;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9; /* Light gray background for the table */
+  background-color: #f9f9f9;
 }
 
 th,
 td {
   padding: 12px 15px;
   text-align: center;
-  border: 1px solid #ddd; /* Light gray border */
+  border: 1px solid #ddd;
 }
 
+/* Header and Title Styles */
 th {
-  background-color: #333333; /* Dark gray for table headers */
-  color: #ffffff; /* White text in headers */
+  background-color: #333333;
+  color: #ffffff;
   font-weight: bold;
   font-size: 16px;
 }
 
 .header {
-  background-color: #e0e0e0; /* Light gray for alternating row headers */
+  background-color: #333333; /* Dark background */
+  color: #ffffff; /* Light font color */
   font-weight: bold;
 }
 
-/* Row styles */
+/* Row Styles */
 .compensation-row,
 .deduction-row {
   font-weight: 500;
-  color: #444444; /* Medium gray text for rows */
+  color: #444444;
 }
 
 .total-row {
-  background-color: #f5f5f5; /* Very light gray for total rows */
+  background-color: #f5f5f5;
   font-weight: bold;
-  color: #222222; /* Dark gray for total row text */
+  color: #222222;
 }
 
 /* Button styling */
@@ -86,39 +95,4 @@ th {
 .back-btn {
   text-align: center;
   margin-top: 20px;
-}
-
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
 }

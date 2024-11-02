@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/payslip.css" />
+    <link rel="stylesheet" href="./css/loader.css" />
     <script src="./js/payslip.js"></script>
     <title>Payroll Information - Compensation and Deduction</title>
   </head>
@@ -11,12 +12,10 @@
     <h1>Payroll Summary</h1>
 
     <!-- Employee Info Section -->
-    <div class="info" id="employee-name">Name: John Doe</div>
-    <div class="info" id="employee-department">
-      Department: Computer Science
-    </div>
-    <div class="info" id="basic-pay">Basic Pay: 1000</div>
-    <div class="info" id="date">Date: 01 November 2024</div>
+    <div class="info" id="employee-name"></div>
+    <div class="info" id="employee-department"></div>
+    <div class="info" id="basic-pay"></div>
+    <div class="info" id="date"></div>
 
     <!-- Payroll Table -->
     <div class="table-container">
@@ -32,7 +31,12 @@
           </tr>
         </thead>
         <tbody id="compensation-body">
-          <tr class="compensation-row">
+          <tr id="spinner-row">
+            <td colspan="3">
+              <div class="loader" id="spinner"></div>
+            </td>
+          </tr>
+          <!-- <tr class="compensation-row">
             <td>Basic Pay</td>
             <td>1000</td>
           </tr>
@@ -63,7 +67,7 @@
           <tr class="total-row">
             <td>Total Compensation</td>
             <td>1000</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
 
@@ -79,7 +83,12 @@
           </tr>
         </thead>
         <tbody id="deduction-body">
-          <tr class="deduction-row">
+          <tr id="spinner-row">
+            <td colspan="3">
+              <div class="loader" id="spinner"></div>
+            </td>
+          </tr>
+          <!-- <tr class="deduction-row">
             <td>Tax</td>
             <td>1000</td>
           </tr>
@@ -98,7 +107,7 @@
           <tr class="total-row">
             <td>Total Deduction</td>
             <td>100</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>

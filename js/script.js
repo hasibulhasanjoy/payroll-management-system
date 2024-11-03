@@ -126,6 +126,13 @@ const handleCalculateClick = async (id, selections) => {
   const data = { employee_id: +id, ...selections };
   // console.log(data);
   const payslip = await sendCalculationRequest(data);
+  // Target the button with a specific data-employee-id attribute
+  const calculateButton = document.querySelector(
+    `.btn-calculate[data-employee-id="${id}"]`
+  );
+  calculateButton.textContent = "Calculated";
+  calculateButton.classList.add("disabled");
+
   // console.log(payslip);
 };
 

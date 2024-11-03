@@ -126,7 +126,7 @@ const handleCalculateClick = async (id, selections) => {
   const data = { employee_id: +id, ...selections };
   // console.log(data);
   const payslip = await sendCalculationRequest(data);
-  console.log(payslip);
+  // console.log(payslip);
 };
 
 // Main function to initialize the application

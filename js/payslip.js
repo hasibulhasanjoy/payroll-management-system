@@ -1,3 +1,4 @@
+"use strict";
 const urlParams = new URLSearchParams(window.location.search);
 const employeeId = urlParams.get("id");
 
@@ -9,12 +10,13 @@ const fetchPayslip = async function () {
 
 const getPayslip = async function () {
   const payslip = await fetchPayslip();
-  // console.log(payslip[payslip.length - 1]);
+  console.log(...payslip);
   const {
     date,
     details: { name, department, compensations, deductions, main_payscale },
   } = payslip[0];
   renderEmployeeInformation(date, name, department, main_payscale);
+  console.log(compensations);
   renderCompensationsData(compensations);
   renderDeductionsData(deductions);
 };
@@ -28,7 +30,7 @@ const renderCompensationsData = function (compensations) {
     compensations["christmas"] ||
     0;
   const newYearBonus = compensations["newYear"] || 0;
-  const educationalPromotion = compensations["educationalPromotion"] || 0;
+  const EducationalAllowance = compensations["Education Allowance"] || 0;
   const specialBenefit = compensations["special benefit"] || 0;
   const totalCompensations =
     houseRent +
@@ -36,7 +38,7 @@ const renderCompensationsData = function (compensations) {
     festival +
     newYearBonus +
     specialBenefit +
-    educationalPromotion;
+    EducationalAllowance;
   const compensationsContainer = document.getElementById("compensation-body");
   compensationsContainer.innerHTML = "";
   const html = `
@@ -55,8 +57,8 @@ const renderCompensationsData = function (compensations) {
             <td>${festival}</td>
           </tr>
           <tr class="compensation-row">
-            <td>Educational Promotion</td>
-            <td>${festival}</td>
+            <td>Education Allowance</td>
+            <td>${EducationalAllowance}</td>
           </tr>
           <tr class="compensation-row">
             <td>New Year Bonus</td>
